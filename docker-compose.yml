@@ -1,0 +1,40 @@
+name: monitor-sensor
+
+services:
+  app:
+    build: .
+    container_name: monitor-sensor
+    environment:
+      DATABASE_URL: jdbc:postgresql://db:5432/monitor-sensor
+      DATABASE_USERNAME: postgres
+      DATABASE_PASSWORD: postgres
+      JWT_SECRET_PHRASE: fdknv3874ryrvndoi34jnf8vmkewrmdc34ur23jh3b
+    ports:
+      - "55002:55002"
+    depends_on:
+      - db
+    networks:
+      - monitor-net
+
+  db:
+    image: bitnami/postgresql:14
+    restart: always
+    environment:
+      POSTGRESQL_DATABASE: monitor-sensor
+      POSTGRESQL_PASSWORD: postgres
+    networks:
+      - monitor-net
+    ports:
+      - "5432:5432"
+    expose:
+      - "5432"
+    volumes:
+      - postgresql-db:/var/lib/postgresql
+
+volumes:
+  postgresql-db:
+
+networks:
+  monitor-net:
+    name: monitor-net
+    driver: bridge
