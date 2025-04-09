@@ -42,7 +42,6 @@ git clone https://github.com/Ivanmc-007/com.ivan.ocr.monitor-sensor.git
 ### Docker Setup
 
 Make sure you have [Maven](https://maven.apache.org/) and [Docker Compose](https://docs.docker.com/compose/) installed.
-Make sure **Kafka** and **Eureka** are running as configured.
 
 1. In the terminal, navigate to the project's root directory.
 2. Execute the following commands to build the project and create the Docker image:
